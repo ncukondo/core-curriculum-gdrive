@@ -15,7 +15,6 @@ csv:
 	python ./python/output_csv.py
 
 sheets:
-	rm -rf sheets
 	python ./python/download_sheets.py
 
 python_files:
