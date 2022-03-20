@@ -1,6 +1,7 @@
 .PHONY: sheets python_files csv markdown output
 
 output:
+	make sheets
 	rm -rf output
 	make csv
 	make markdown

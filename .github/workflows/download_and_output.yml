@@ -8,15 +8,34 @@ jobs:
     name: test worker
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout data
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1   
+      - name: Checkout output in data repo
         uses: actions/checkout@v3
         with:
           repository: ncukondo/core-curriculum-data
           token: ${{ secrets.GH_PAT }}
-          path: data
+          path: output_in_github
           fetch-depth: 1  
-      - name: display data contents
+      - name: download sheets and make output
+        run: make output
+      - name: commit and push
+        with:
+          token: ${{ secrets.GH_PAT }}
         run: |
-          cd data
-          ls -l
+          cd output_in_github
+          git add -N . # 新規ファイルを含める
+          if ! git diff --exit-code --quiet
+          then
+            echo change ditected update reposistory
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "Updated from Google Sheets"
+            git push
+          else
+            echo no change
+          fi
 
