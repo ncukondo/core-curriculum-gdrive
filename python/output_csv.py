@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[8]:
 
 
 import csv
@@ -39,7 +39,7 @@ print("output... outcomes.csv")
 r4_full
 
 
-# In[11]:
+# In[9]:
 
 
 import pandas as pd
@@ -47,17 +47,18 @@ import glob
 import re
 import csv
 import os
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
 os.makedirs( "output/tables", exist_ok=True)
-file_list = glob.glob(f"./sheets/*編集用/別表-*.csv")
+file_list = glob.glob(f"{SHEETS_DIR}/*編集用/別表-*.csv")
 for file in file_list:
     name = re.search(r"別表\-(.+)\.csv",file).group(1)
     df = pd.read_csv(file,encoding="utf_8_sig")
-    df.to_csv(f"./output/tables/{name}.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+    df.to_csv(f"{OUTPUT_DIR}/tables/{name}.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
     print(f"output... ./output/tables/{name}.csv")
 
 
-# In[12]:
+# In[10]:
 
 
 import pandas as pd
@@ -65,10 +66,12 @@ import glob
 import re
 import csv
 import os
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
-r4_l1=pd.read_csv("./sheets/第1層/第1層.csv").loc[:,["タブ名","第1層"]]
-os.makedirs("output/tables", exist_ok=True)
-file_list = glob.glob(f"./sheets/*編集用/行き先がないID.csv")
+
+r4_l1=pd.read_csv(f"{SHEETS_DIR}/第1層/第1層.csv").loc[:,["タブ名","第1層"]]
+os.makedirs(f"{OUTPUT_DIR}/tables", exist_ok=True)
+file_list = glob.glob(f"{SHEETS_DIR}/*編集用/行き先がないID.csv")
 df = pd.DataFrame([],columns=[])
 for file in file_list:
     name = re.search(r"([^\\\/]+)編集用",file).group(1)
@@ -78,18 +81,19 @@ for file in file_list:
     df= pd.concat([df,unit])
 
 df=pd.merge(df,r4_l1,how="left",on="タブ名")
-df.to_csv(f"./output/deleted_or_moved.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+df.to_csv(f"{OUTPUT_DIR}/deleted_or_moved.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print(f"output... ./output/deleted_or_moved.csv")
 
 
-# In[13]:
+# In[11]:
 
 
 import pandas as pd
 import re
 import os
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
-raw=pd.read_csv("./sheets/H28/H28.csv", index_col=0)
+raw=pd.read_csv(f"{SHEETS_DIR}/H28/H28.csv", index_col=0)
 raw
 
 
@@ -157,7 +161,7 @@ for index,row in raw.iterrows():
 data["id5"]=id5_list
 data["text5"]=text5_list
 
-distdir="./output/2016/"
+distdir=f"{OUTPUT_DIR}/2016/"
 os.makedirs(distdir,exist_ok=True)
 data.to_csv(f"{distdir}H28.csv",encoding="utf_8_sig")
 data
