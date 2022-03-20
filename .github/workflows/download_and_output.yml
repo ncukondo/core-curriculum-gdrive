@@ -36,6 +36,4 @@ jobs:
           else
             echo no change
           fi
-        with:
-          token: ${{ secrets.GH_PAT }}
 
