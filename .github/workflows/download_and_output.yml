@@ -22,8 +22,6 @@ jobs:
       - name: download sheets and make output
         run: make output
       - name: commit and push
-        with:
-          token: ${{ secrets.GH_PAT }}
         run: |
           cd output_in_github
           git add -N . # 新規ファイルを含める
@@ -38,4 +36,6 @@ jobs:
           else
             echo no change
           fi
+        with:
+          token: ${{ secrets.GH_PAT }}
 
