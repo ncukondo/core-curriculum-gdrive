@@ -1,0 +1,22 @@
+name: test worker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: test worker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout data
+        uses: actions/checkout@v3
+        with:
+          repository: ncukondo/core-curriculum-data
+          token: ${{ secrets.GH_PAT }}
+          path: data
+          fetch-depth: 1  
+      - name: display data contents
+        run: |
+          cd data
+          ls -l
+

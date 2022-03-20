@@ -1,0 +1,8 @@
+client_secret.json
+.env
+.envrc
+client_secret.env
+temp
+__pycache__
+uid_list.txt
+test_*
