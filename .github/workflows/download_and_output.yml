@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: test worker
+    name: Download google sheets and push to core-curriculum-data
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,6 +19,12 @@ jobs:
           token: ${{ secrets.GH_PAT }}
           path: output_in_github
           fetch-depth: 1  
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: download sheets and make output
         run: make output
       - name: commit and push
