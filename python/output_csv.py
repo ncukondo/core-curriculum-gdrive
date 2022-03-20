@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[1]:
 
 
 import csv
 import os
 import pandas as pd
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
-r4_l1=pd.read_csv("./sheets/第1層/第1層.csv")
+r4_l1=pd.read_csv(f"{SHEETS_DIR}/第1層/第1層.csv")
 
-os.makedirs("./output",exist_ok=True)
+os.makedirs(f"{OUTPUT_DIR}",exist_ok=True)
 
-r4_l1.to_csv("./output/outcomes_l1.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+r4_l1.to_csv(f"{OUTPUT_DIR}/outcomes_l1.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print("output... ./output/outcomes_l1.csv")
 
 columns=["第1層","第2層","第2層説明","第3層","第4層","メモ","UID","H28対応項目"]
@@ -20,19 +21,19 @@ r4_l234 = pd.DataFrame(data=[],columns=columns)
 r4_l2 =  pd.DataFrame(data=[],columns=[])
 tabs=r4_l1["タブ名"]
 for index, row in r4_l1.iterrows():
-    r4_l34_unit=pd.read_csv(f"./sheets/{row.タブ名}編集用/第2から4層.csv")
-    r4_l2_unit=pd.read_csv(f"./sheets/{row.タブ名}編集用/第2層.csv")
+    r4_l34_unit=pd.read_csv(f"{SHEETS_DIR}/{row.タブ名}編集用/第2から4層.csv")
+    r4_l2_unit=pd.read_csv(f"{SHEETS_DIR}/{row.タブ名}編集用/第2層.csv")
     r4_l2 = pd.concat([r4_l2,r4_l2_unit])
     r4_l34_unit["第1層"] = row.第1層
     r4_l34_unit = pd.merge(r4_l34_unit,r4_l2_unit,how="left",on="第2層")
     r4_l234=pd.concat([r4_l234,r4_l34_unit.loc[:,columns]])
 
-r4_l2.to_csv("./output/outcomes_l2.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+r4_l2.to_csv(f"{OUTPUT_DIR}/outcomes_l2.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print("output... ./output/outcomes_l2.csv")
 
 r4_full=pd.merge(r4_l1,r4_l234,how="outer",on="第1層")
 r4_full=r4_full.dropna(subset=["第1層","第2層","第3層","第4層"])
-r4_full.loc[:,["第1層","第2層","第3層","第4層","UID","H28対応項目"]].to_csv("./output/outcomes.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+r4_full.loc[:,["第1層","第2層","第3層","第4層","UID","H28対応項目"]]    .to_csv(f"{OUTPUT_DIR}/outcomes.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print("output... outcomes.csv")
 
 r4_full
