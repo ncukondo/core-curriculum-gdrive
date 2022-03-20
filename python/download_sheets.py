@@ -8,6 +8,7 @@ import os
 import tempfile
 import pandas as pd
 import csv
+import shutil
 
 from lib.utils import BASE_DIR
 from lib.export_google_sheets import export_google_sheets
@@ -18,6 +19,10 @@ folder_ids=[
         '1FlCwwi71s1BI4uhOf2CefX85byj1Alo_', #各チーム編集用シート
 ]
 DIST_DIR=f"{BASE_DIR}/sheets/"
+info_file = f"{DIST_DIR}sheets_info.json"
+
+if os.path.exists(DIST_DIR) and os.path.exists(info_file):
+    shutil.rmtree(DIST_DIR)
 
 os.makedirs(DIST_DIR,exist_ok=True)
 
@@ -31,7 +36,7 @@ try:
             for name in book.sheet_names:
                 sheet:pd.DataFrame = book.parse(name)
                 sheet.to_csv(os.path.join(dir_name,f"{name}.csv"),quoting=csv.QUOTE_NONNUMERIC,encoding="utf_8_sig",index=False,)
+        os.remove(info_file)
 except:
-    import traceback
-    traceback.print_exc()
+    raise
 

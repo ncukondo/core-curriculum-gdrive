@@ -1,6 +1,8 @@
-name: test worker
+name: Download google sheets and push to core-curriculum-data
 
 on:
+  schedule:
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
