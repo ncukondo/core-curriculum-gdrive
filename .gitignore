@@ -1,8 +1,11 @@
 client_secret.json
 .env
 .envrc
-client_secret.env
+*.env
 temp
 __pycache__
 uid_list.txt
 test_*
+output_in_github
+output
+sheets
