@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+
+# add below contents to .git/hooks/pre-commit and chmod +x .git/hooks/pre-commit
+
+ipynb_files=`git diff  --cached --name-only --diff-filter=ACM \
+  | grep -Z -e  'ipynb/.*\.ipynb$'`
+
+if [ "${ipynb_files}" != "" ]; then
+  echo ${ipynb_files} | xargs -r  jupyter nbconvert --clear-output --inplace
+
+  jupyter nbconvert --to python ./ipynb/*.ipynb
+  rm -rf python
+  mkdir -p python
+  cp ./ipynb/*.py python
+  cp -r ./ipynb/lib python
+  rm ./ipynb/*.py
+fi
+
+git diff -z --cached --name-only --diff-filter=ACMD \
+  | xargs -r -0 git add

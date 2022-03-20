@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[ ]:
 
 
 import csv
@@ -39,7 +39,7 @@ print("output... outcomes.csv")
 r4_full
 
 
-# In[9]:
+# In[ ]:
 
 
 import pandas as pd
@@ -49,7 +49,7 @@ import csv
 import os
 from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
-os.makedirs( "output/tables", exist_ok=True)
+os.makedirs( f"{OUTPUT_DIR}/tables", exist_ok=True)
 file_list = glob.glob(f"{SHEETS_DIR}/*編集用/別表-*.csv")
 for file in file_list:
     name = re.search(r"別表\-(.+)\.csv",file).group(1)
@@ -58,7 +58,7 @@ for file in file_list:
     print(f"output... ./output/tables/{name}.csv")
 
 
-# In[10]:
+# In[ ]:
 
 
 import pandas as pd
@@ -85,7 +85,7 @@ df.to_csv(f"{OUTPUT_DIR}/deleted_or_moved.csv",encoding="utf_8_sig",quoting=csv.
 print(f"output... ./output/deleted_or_moved.csv")
 
 
-# In[11]:
+# In[ ]:
 
 
 import pandas as pd
