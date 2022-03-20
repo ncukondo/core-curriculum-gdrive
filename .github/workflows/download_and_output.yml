@@ -7,6 +7,17 @@ jobs:
   build:
     name: Download google sheets and push to core-curriculum-data
     runs-on: ubuntu-latest
+    env:
+      GAUTH_TYPE: ${{secrets.GAUTH_TYPE}}
+      GAUTH_PROJECT_ID: ${{secrets.GAUTH_PROJECT_ID}}
+      GAUTH_PRIVATE_KEY_ID: ${{secrets.GAUTH_PRIVATE_KEY_ID}}
+      GAUTH_PRIVATE_KEY: ${{secrets.GAUTH_PRIVATE_KEY}}
+      GAUTH_CLIENT_EMAIL: ${{secrets.GAUTH_CLIENT_EMAIL}}
+      GAUTH_CLIENT_ID: ${{secrets.GAUTH_CLIENT_ID}}
+      GAUTH_AUTH_URI: ${{secrets.GAUTH_AUTH_URI}}
+      GAUTH_TOKEN_URI: ${{secrets.GAUTH_TOKEN_URI}}
+      GAUTH_AUTH_PROVIDER_X509_CERT_URL: ${{secrets.GAUTH_AUTH_PROVIDER_X509_CERT_URL}}
+      GAUTH_CLIENT_X509_CERT_URL: ${{secrets.GAUTH_CLIENT_X509_CERT_URL}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
