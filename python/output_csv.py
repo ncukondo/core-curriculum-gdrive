@@ -8,6 +8,7 @@ import csv
 import os
 import pandas as pd
 from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
+from lib.dataframe_to_grouped_numbers import dataframe_to_grouped_numbers
 
 r4_l1=pd.read_csv(f"{SHEETS_DIR}/第1層/第1層.csv")
 
@@ -31,12 +32,18 @@ for index, row in r4_l1.iterrows():
 r4_l2.to_csv(f"{OUTPUT_DIR}/outcomes_l2.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print("output... ./output/outcomes_l2.csv")
 
-r4_full=pd.merge(r4_l1,r4_l234,how="outer",on="第1層")
-r4_full=r4_full.dropna(subset=["第1層","第2層","第3層","第4層"])
-r4_full.loc[:,["第1層","第2層","第3層","第4層","UID","H28対応項目"]]    .to_csv(f"{OUTPUT_DIR}/outcomes.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+
+r4=pd.merge(r4_l1,r4_l234,how="outer",on="第1層")
+layers = ["第1層","第2層","第3層","第4層"]
+r4=r4.dropna(subset=layers).reset_index()
+nums=dataframe_to_grouped_numbers(r4,layers)
+r4["id"]=r4["第1層イニシャル"]+    "-"+nums["第2層"].astype('str').str.zfill(2)+    "-"+nums["第3層"].astype('str').str.zfill(2)+    "-"+nums["第4層"].astype('str').str.zfill(2)
+r4=r4.loc[:,["第1層イニシャル","第1層","第2層","第3層","第4層","id","UID","H28対応項目"]]
+
+r4.to_csv(f"{OUTPUT_DIR}/outcomes.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
 print("output... outcomes.csv")
 
-r4_full
+r4
 
 
 # In[ ]:
@@ -47,15 +54,40 @@ import glob
 import re
 import csv
 import os
-from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
+from lib.utils import BASE_DIR,SHEETS_DIR,TABLE_SOURCE_DIR
 
-os.makedirs( f"{OUTPUT_DIR}/tables", exist_ok=True)
+os.makedirs( f"{TABLE_SOURCE_DIR}", exist_ok=True)
 file_list = glob.glob(f"{SHEETS_DIR}/*編集用/別表-*.csv")
 for file in file_list:
     name = re.search(r"別表\-(.+)\.csv",file).group(1)
     df = pd.read_csv(file,encoding="utf_8_sig")
-    df.to_csv(f"{OUTPUT_DIR}/tables/{name}.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
-    print(f"output... ./output/tables/{name}.csv")
+    df.to_csv(f"{TABLE_SOURCE_DIR}/{name}.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
+    print(f"output... {TABLE_SOURCE_DIR}/{name}.csv")
+
+
+# In[ ]:
+
+
+import re
+import os
+import pandas as pd
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR,TABLE_SOURCE_DIR,TABLE_FORMATTED_DIR
+from lib.apply_condition_to_dataframe  import apply_condition_to_dataframe
+
+df = pd.read_csv(f"{SHEETS_DIR}/別表一覧/別表一覧.csv",encoding="utf_8_sig")
+df.to_csv(f"{OUTPUT_DIR}/table_index.csv",encoding="utf_8_sig",index=False)
+print(f"output... table_index.csv")
+
+
+
+os.makedirs(TABLE_FORMATTED_DIR,exist_ok=True)
+for row in df.itertuples():
+    source = pd.read_csv(f"{TABLE_SOURCE_DIR}/{row.データ元}.csv")
+    source = apply_condition_to_dataframe(source,row.条件)
+    source["id"]=source.reset_index().index+1
+    source["id"]=f"TBL-{row.id}-"+source["id"].astype(str).str.zfill(3)
+    source = source.loc[:,[*re.split(r" *, *",row.列),"id"] ]
+    source.to_csv(f"{TABLE_FORMATTED_DIR}/{row.id}.csv",index=False)
 
 
 # In[ ]:
