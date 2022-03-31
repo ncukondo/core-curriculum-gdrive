@@ -5,7 +5,6 @@
 
 
 import pandas as pd
-import re
 from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 
 from lib.dataframe_to_text import dataframe_to_text
