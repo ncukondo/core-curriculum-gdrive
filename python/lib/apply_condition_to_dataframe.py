@@ -6,7 +6,7 @@ import pandas as pd
 
 def apply_condition_to_dataframe(data:pd.DataFrame,condition_text:str)->pd.DataFrame:
     """apply condition to dataframe"""
-    conditions =re.split(r" *, *",condition_text) if type(condition_text)==str  else []
+    conditions =re.split(r" *, *",condition_text) if isinstance(condition_text,str)  else []
     result = data.copy()
     for condition in conditions:
         unit = r" *(.+?) *"

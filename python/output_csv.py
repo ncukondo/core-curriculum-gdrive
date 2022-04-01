@@ -86,7 +86,7 @@ for row in df.itertuples():
     source = apply_condition_to_dataframe(source,row.条件)
     source["id"]=source.reset_index().index+1
     source["id"]=f"TBL-{row.id}-"+source["id"].astype(str).str.zfill(3)
-    source = source.loc[:,[*re.split(r" *, *",row.列),"id"] ]
+    source = source.loc[:,[*re.split(r" *, *",row.列),"id","UID","H28対応項目"] ]
     source.to_csv(f"{TABLE_FORMATTED_DIR}/{row.id}.csv",index=False)
 
 
@@ -193,8 +193,8 @@ for index,row in raw.iterrows():
 data["id5"]=id5_list
 data["text5"]=text5_list
 
-distdir=f"{OUTPUT_DIR}/2016/"
+distdir=f"{OUTPUT_DIR}/2016"
 os.makedirs(distdir,exist_ok=True)
-data.to_csv(f"{distdir}H28.csv",encoding="utf_8_sig")
+data.to_csv(f"{distdir}/goals.csv", encoding = "utf_8_sig")
 data
 
