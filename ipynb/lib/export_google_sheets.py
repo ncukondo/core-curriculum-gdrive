@@ -7,7 +7,7 @@ from dateutil.parser import parse as parse_date
 from lib.google_drive import from_service_account
 
 
-def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_stor_file:str="gsheets_info.json"):
+def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_store_file:str=""):
     """ export excel from google sheet"""
     epoc_time='1970-01-01T00:00:00.000+00:00'
 
@@ -18,10 +18,11 @@ def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_stor_file:s
     drive = from_service_account()
     gsheets_info={}
     try:
-        with open(info_stor_file,"r",encoding="utf_8") as f:
-            gsheets_info=json.load(f)
+        if len(info_store_file)>0:
+            with open(info_store_file,"r",encoding="utf_8") as f:
+                gsheets_info=json.load(f)
     except:
-        print(f"file not found({info_stor_file})")
+        print(f"file not found({info_store_file})")
 
     global_updated=gsheets_info.get("global",{}).get("updated",epoc_time)
     query="\n and \n".join([ 
@@ -54,5 +55,6 @@ def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_stor_file:s
     except:
         raise
     finally:
-        with open(info_stor_file,"w",encoding="utf_8") as f:
-            json.dump(gsheets_info,f,indent=4, ensure_ascii=False)
+        if len(info_store_file)>0:
+            with open(info_store_file,"w",encoding="utf_8") as f:
+                json.dump(gsheets_info,f,indent=4, ensure_ascii=False)
