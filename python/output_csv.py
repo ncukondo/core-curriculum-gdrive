@@ -4,12 +4,40 @@
 # In[ ]:
 
 
+import re
+import os
+import pandas as pd
+from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR,TABLE_SOURCE_DIR,TABLE_FORMATTED_DIR
+from lib.apply_condition_to_dataframe  import apply_condition_to_dataframe
+
+df = pd.read_csv(f"{SHEETS_DIR}/別表一覧/別表一覧.csv",encoding="utf_8_sig")
+df.to_csv(f"{OUTPUT_DIR}/table_index.csv",encoding="utf_8_sig",index=False)
+print(f"output... table_index.csv")
+
+
+
+os.makedirs(TABLE_FORMATTED_DIR,exist_ok=True)
+for row in df.itertuples():
+    source = pd.read_csv(f"{TABLE_SOURCE_DIR}/{row.データ元}.csv")
+    source = apply_condition_to_dataframe(source,row.条件)
+    source["id"]=source.reset_index().index+1
+    source["id"]=f"TBL-{row.id}-"+source["id"].astype(str).str.zfill(3)
+    source = source.loc[:,[*re.split(r" *, *",row.列),"id","UID","H28対応項目"] ]
+    source.to_csv(f"{TABLE_FORMATTED_DIR}/{row.id}.csv",index=False)
+
+
+# In[ ]:
+
+
 import csv
 import os
 import pandas as pd
+import re
+from typing import Union, Callable
 from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR
 from lib.dataframe_to_grouped_numbers import dataframe_to_grouped_numbers
 
+table_index = pd.read_csv(f"{OUTPUT_DIR}/table_index.csv",encoding="utf_8_sig")
 r4_l1=pd.read_csv(f"{SHEETS_DIR}/第1層/第1層.csv")
 
 os.makedirs(f"{OUTPUT_DIR}",exist_ok=True)
@@ -33,11 +61,34 @@ r4_l2.to_csv(f"{OUTPUT_DIR}/outcomes_l2.csv",encoding="utf_8_sig",quoting=csv.QU
 print("output... ./output/outcomes_l2.csv")
 
 
+
 r4=pd.merge(r4_l1,r4_l234,how="outer",on="第1層")
 layers = ["第1層","第2層","第3層","第4層"]
 r4=r4.dropna(subset=layers).reset_index()
 nums=dataframe_to_grouped_numbers(r4,layers)
 r4["id"]=r4["第1層イニシャル"]+    "-"+nums["第2層"].astype('str').str.zfill(2)+    "-"+nums["第3層"].astype('str').str.zfill(2)+    "-"+nums["第4層"].astype('str').str.zfill(2)
+
+def format_table_ref(x:str)->str:
+    def name_to_label(name:str):
+        try:
+            return table_index.set_index("表名").at[name,"id"]
+        except KeyError:
+            return ""
+
+    def replace_func(reg:re.match)->str:
+        name = reg.group(1)
+        whole = reg.group(0)
+        label = name_to_label(name)
+        if label:
+            return f"[@tbl:{label}]"
+        else:
+            return whole
+    return re.sub(r"表\[([^\]]+)\]",replace_func,x)
+
+
+r4["第4層"] = r4["第4層"].map(format_table_ref)
+
+
 r4=r4.loc[:,["第1層イニシャル","第1層","第2層","第3層","第4層","id","UID","H28対応項目"]]
 
 r4.to_csv(f"{OUTPUT_DIR}/outcomes.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
@@ -63,31 +114,6 @@ for file in file_list:
     df = pd.read_csv(file,encoding="utf_8_sig")
     df.to_csv(f"{TABLE_SOURCE_DIR}/{name}.csv",encoding="utf_8_sig",quoting=csv.QUOTE_NONNUMERIC,index=False)
     print(f"output... {TABLE_SOURCE_DIR}/{name}.csv")
-
-
-# In[ ]:
-
-
-import re
-import os
-import pandas as pd
-from lib.utils import BASE_DIR,SHEETS_DIR,OUTPUT_DIR,TABLE_SOURCE_DIR,TABLE_FORMATTED_DIR
-from lib.apply_condition_to_dataframe  import apply_condition_to_dataframe
-
-df = pd.read_csv(f"{SHEETS_DIR}/別表一覧/別表一覧.csv",encoding="utf_8_sig")
-df.to_csv(f"{OUTPUT_DIR}/table_index.csv",encoding="utf_8_sig",index=False)
-print(f"output... table_index.csv")
-
-
-
-os.makedirs(TABLE_FORMATTED_DIR,exist_ok=True)
-for row in df.itertuples():
-    source = pd.read_csv(f"{TABLE_SOURCE_DIR}/{row.データ元}.csv")
-    source = apply_condition_to_dataframe(source,row.条件)
-    source["id"]=source.reset_index().index+1
-    source["id"]=f"TBL-{row.id}-"+source["id"].astype(str).str.zfill(3)
-    source = source.loc[:,[*re.split(r" *, *",row.列),"id","UID","H28対応項目"] ]
-    source.to_csv(f"{TABLE_FORMATTED_DIR}/{row.id}.csv",index=False)
 
 
 # In[ ]:
@@ -195,6 +221,6 @@ data["text5"]=text5_list
 
 distdir=f"{OUTPUT_DIR}/2016"
 os.makedirs(distdir,exist_ok=True)
-data.to_csv(f"{distdir}/goals.csv", encoding = "utf_8_sig")
+data.to_csv(f"{distdir}/goals.csv", encoding = "utf_8_sig", index=False)
 data
 
