@@ -18,10 +18,10 @@ r4=pd.merge(r4_l1,r4,how="right",on="第1層")
 r4=r4.dropna(subset=["第1層","第2層","第3層","第4層"]).fillna("")
 
 r4_to_md_draft=pd.DataFrame(data=[],columns=["第1層","第2層","第3層","第4層"])
-r4_to_md_draft["第1層"]="\n"+"# "+r4["第1層"]+"\n\n"+r4["第1層説明"]+"\n"
-r4_to_md_draft["第2層"]="\n"+"## "+r4["第2層"]+"\n\n"+r4["第2層説明"]+"\n"
-r4_to_md_draft["第3層"]="\n"+"### "+r4["第3層"]+"\n"
-r4_to_md_draft["第4層"]="1. "+r4["第4層"]
+r4_to_md_draft["第1層"]="\n"+"# "+r4["l1_id"]+": "+r4["第1層"]+"\n\n"+r4["第1層説明"]+"\n"
+r4_to_md_draft["第2層"]="\n"+"## "+r4["l2_id"]+": "+r4["第2層"]+"\n\n"+r4["第2層説明"]+"\n"
+r4_to_md_draft["第3層"]="\n"+"### "+r4["l3_id"]+": "+r4["第3層"]+"\n"
+r4_to_md_draft["第4層"]="1. "+r4["第4層"]+"("+r4["id"]+")"
 r4_to_md_draft=r4_to_md_draft.dropna(subset=["第1層","第2層","第3層","第4層"])
 
 r4_md_draft = dataframe_to_text(r4_to_md_draft)

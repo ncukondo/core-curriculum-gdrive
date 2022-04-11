@@ -40,7 +40,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: download sheets and make output
-        run: make output
+        run: |
+          make python_files
+          make output
       - name: Set current datetime as env variable
         env:
           TZ: 'Asia/Tokyo' # タイムゾーン指定

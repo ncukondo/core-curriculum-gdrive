@@ -8,13 +8,6 @@ ipynb_files=`git diff  --cached --name-only --diff-filter=ACM \
 
 if [ "${ipynb_files}" != "" ]; then
   echo ${ipynb_files} | xargs -r  jupyter nbconvert --clear-output --inplace
-
-  jupyter nbconvert --to python ./ipynb/*.ipynb
-  rm -rf python
-  mkdir -p python
-  cp ./ipynb/*.py python
-  cp -r ./ipynb/lib python
-  rm ./ipynb/*.py
 fi
 
 git diff -z --cached --name-only --diff-filter=ACMD \
