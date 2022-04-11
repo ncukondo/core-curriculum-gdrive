@@ -9,3 +9,4 @@ test_*
 output_in_github
 output
 sheets
+python/*
