@@ -4,7 +4,7 @@
 # add below contents to .git/hooks/pre-commit and chmod +x .git/hooks/pre-commit
 
 ipynb_files=`git diff  --cached --name-only --diff-filter=ACM \
-  | grep -Z -e  'ipynb/.*\.ipynb$'`
+  | grep -Z -e  'src/.*\.ipynb$'`
 
 if [ "${ipynb_files}" != "" ]; then
   echo ${ipynb_files} | xargs -r  jupyter nbconvert --clear-output --inplace
