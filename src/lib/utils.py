@@ -6,5 +6,5 @@ SHEETS_OUTCOMES_DIR= os.path.join(SHEETS_DIR,"outcomes")
 SHEETS_GENERAL_DIR= os.path.join(SHEETS_DIR,"general")
 OUTPUT_DIR= os.path.join(BASE_DIR,"output")
 OUTCOME_TABLE_SOURCE_DIR= os.path.join(SHEETS_DIR,"outcome_tables_source")
-TABLE_FORMATTED_DIR= os.path.join(OUTPUT_DIR,"tables_formatted")
+TABLE_FORMATTED_DIR= os.path.join(OUTPUT_DIR,"tables")
 
