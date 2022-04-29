@@ -4,12 +4,9 @@ output:
 	make sheets
 	rm -rf output
 	make csv
-	make markdown
 	mkdir -p output_in_github
 	cp -r ./output/* output_in_github
 
-markdown:
-	python ./python/output_markdown.py
 
 csv:
 	python ./python/output_csv.py
