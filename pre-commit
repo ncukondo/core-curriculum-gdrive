@@ -10,5 +10,5 @@ if [ "${ipynb_files}" != "" ]; then
   echo ${ipynb_files} | xargs -r  jupyter nbconvert --clear-output --inplace
 fi
 
-git diff -z --cached --name-only --diff-filter=ACMD \
+git diff -z --cached --name-only --diff-filter=ACM \
   | xargs -r -0 git add

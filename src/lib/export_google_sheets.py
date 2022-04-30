@@ -7,7 +7,7 @@ from dateutil.parser import parse as parse_date
 from lib.google_drive import from_service_account
 
 
-def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_store_file:str=""):
+def export_google_sheets(folder_dict:dict[str,str],dist_dir:str=None,info_store_file:str=""):
     """ export excel from google sheet"""
     epoc_time='1970-01-01T00:00:00.000+00:00'
 
@@ -29,10 +29,10 @@ def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_store_file:
         "mimeType='application/vnd.google-apps.spreadsheet'",
         f"modifiedTime > '{global_updated}'",
         "trashed=false",
-        f"""({" or ".join([f"'{x}' in parents" for x in folder_ids])})"""
+        f"""({" or ".join([f"'{x}' in parents" for x in folder_dict.values()])})"""
     ])
     try:
-        file_list =drive.get_list(query,["name","id","modifiedTime"])
+        file_list =drive.get_list(query,["name","id","modifiedTime","parents"])
         for file in file_list:
             timestamp=file["modifiedTime"]
             file["timestamp"]=timestamp
@@ -42,8 +42,15 @@ def export_google_sheets(folder_ids:list[str],dist_dir:str=None,info_store_file:
             if parse_date(timestamp) <= parse_date(last_recorded_time):
                 print(f"skip: {file['name']}")
                 continue
-            file["export_path"]=drive.export(file["id"],"xlsx",dist_dir)
+
+            dir_name = dist_dir
+            for key,folder_id in folder_dict.items():
+                if folder_id in file["parents"]:
+                    dir_name = os.path.join(dist_dir,key)
+            os.makedirs(dir_name,exist_ok=True)
+            file["export_path"]=drive.export(file["id"],"xlsx",dir_name)
             yield file
+
             print(f'{file["name"]} in {timestamp}')
             gsheets_info["files"]=gsheets_info.get("files",{})
             gsheets_info["files"][file["id"]]={"timestamp":timestamp,"name":file["name"],"id":file["id"]}
