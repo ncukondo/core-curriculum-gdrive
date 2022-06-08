@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 
-# add below contents to .git/hooks/pre-commit and chmod +x .git/hooks/pre-commit
+# add `bash ./pre-commit` to .git/hooks/pre-commit and chmod +x .git/hooks/pre-commit
 
 ipynb_files=`git diff  --cached --name-only --diff-filter=ACM \
   | grep -Z -e  'src/.*\.ipynb$'`
