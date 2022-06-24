@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun 13 19:23:14 2022
+# Make data base, printed on Fri Jun 24 22:19:13 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ VSCODE_CWD = /mnt/c/Users/ncuko/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/ncukondo/.vscode-server/bin/4af164ea3a06f701fe3e89a2bcbb421d2026b68f/bin/remote-cli:/home/ncukondo/.pyenv/shims:/home/ncukondo/.pyenv/bin:/home/ncukondo/.deno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Volta/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/PowerShell/7/:/mnt/c/Users/ncuko/.pyenv/pyenv-win/bin:/mnt/c/Users/ncuko/.pyenv/pyenv-win/shims:/mnt/c/Users/ncuko/AppData/Local/Volta/bin:/mnt/c/Users/ncuko/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/ncuko/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/GitHub CLI/:/mnt/c/Users/ncuko/.deno/bin:/mnt/c/Users/ncuko/.pyenv/pyenv-win:/snap/bin
+PATH = /home/ncukondo/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/home/ncukondo/.pyenv/shims:/home/ncukondo/.pyenv/bin:/home/ncukondo/.deno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Volta/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Program Files/PowerShell/7/:/mnt/c/Users/ncuko/.pyenv/pyenv-win/bin:/mnt/c/Users/ncuko/.pyenv/pyenv-win/shims:/mnt/c/Users/ncuko/AppData/Local/Volta/bin:/mnt/c/Users/ncuko/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/ncuko/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/GitHub CLI/:/mnt/c/Users/ncuko/.deno/bin:/mnt/c/Users/ncuko/.pyenv/pyenv-win:/snap/bin
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
@@ -59,13 +59,13 @@ VSCODE_LOG_STACK = false
 # environment
 PYENV_ROOT = /home/ncukondo/.pyenv
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-dd4a96aa-5a33-4a36-affa-3f159346ae0c.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-245ae7f6-93cd-4c22-a621-43440e9af216.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
 LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-FpZDFEgMnlHs/agent.266
+SSH_AUTH_SOCK = /tmp/ssh-7q6mZl7nrrKk/agent.208
 # automatic
 %F = $(notdir $%)
 # environment
@@ -77,13 +77,13 @@ PWD = /home/ncukondo/dev/core-curriculum-gdrive
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 267
+SSH_AGENT_PID = 209
 # environment
-WSL_INTEROP = /run/WSL/4983_interop
+WSL_INTEROP = /run/WSL/1650_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
-WT_SESSION = c99a9566-c94b-4dc3-8776-2209c83c9771
+WT_SESSION = db955234-f726-40ad-bff1-0762f9d061b1
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -93,7 +93,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 LOGNAME = ncukondo
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -175,9 +175,9 @@ WSL_DISTRO_NAME = Ubuntu
 
 # Directories
 
-# . (device 2080, inode 6901): 16 files, no impossibilities.
+# . (device 2080, inode 6901): 17 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -190,7 +190,7 @@ csv:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 13):
+#  recipe to execute (from 'Makefile', line 14):
 	python ./python/output_outcomes_csv.py
 
 python_files:
@@ -198,7 +198,7 @@ python_files:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 24):
+#  recipe to execute (from 'Makefile', line 29):
 	jupyter nbconvert --to python ./src/*.ipynb
 	rm -rf python
 	mkdir -p python
@@ -213,7 +213,7 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-.PHONY: downloads python_files csv markdown output texts
+.PHONY: downloads python_files csv markdown output texts docs
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -227,7 +227,7 @@ markdown:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-23 06:35:42.195226346
+#  Last modified 2022-06-13 20:04:34.697959128
 #  File has been updated.
 #  Successfully updated.
 
@@ -236,9 +236,10 @@ downloads:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 20):
+#  recipe to execute (from 'Makefile', line 24):
 	python ./python/download_sheets.py
 	python ./python/download_docx.py
+	python ./python/download_zip_doc.py
 
 # Not a target:
 .DEFAULT:
@@ -246,12 +247,20 @@ downloads:
 #  Modification time never checked.
 #  File has not been updated.
 
+docs:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 20):
+	python ./python/output_docs_data.py
+
 texts:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 16):
+#  recipe to execute (from 'Makefile', line 17):
 	python ./python/output_outcomes_text.py
 
 output:
@@ -264,23 +273,25 @@ output:
 	rm -rf output
 	make csv
 	make texts
+	make docs
 	mkdir -p output_in_github
 	cp -r ./output/* output_in_github
 
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
+# Load=12/1024=1%, Rehash=0, Collisions=0/35=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 227 B / avg = 8 B
-# current buf: size = 8162 B / used = 227 B / count = 27 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 28 / storage = 244 B / avg = 8 B
+# current buf: size = 8162 B / used = 244 B / count = 28 / avg = 8 B
 
-# strcache performance: lookups = 43 / hit rate = 37%
+# strcache performance: lookups = 47 / hit rate = 40%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Mon Jun 13 19:23:14 2022
+ 
+# Load=28/8192=0%, Rehash=0, Collisions=1/47=2%
+# Finished Make data base on Fri Jun 24 22:19:13 2022
 
  

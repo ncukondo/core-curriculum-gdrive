@@ -1,4 +1,4 @@
-.PHONY: downloads python_files csv markdown output texts docs
+.PHONY: downloads python_files csv markdown output texts docs other_data
 
 output:
 	make downloads
@@ -6,12 +6,16 @@ output:
 	make csv
 	make texts
 	make docs
+	make other_data
 	mkdir -p output_in_github
 	cp -r ./output/* output_in_github
 
 
 csv:
 	python ./python/output_outcomes_csv.py
+
+other_data:
+	python ./python/output_other_data.py
 
 texts:
 	python ./python/output_outcomes_text.py
