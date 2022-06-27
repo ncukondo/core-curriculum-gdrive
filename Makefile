@@ -1,4 +1,8 @@
-.PHONY: downloads python_files csv markdown output texts docs other_data
+.PHONY: downloads python_files csv markdown output texts docs other_data all
+
+all:
+	make python_files
+	make output
 
 output:
 	make downloads
