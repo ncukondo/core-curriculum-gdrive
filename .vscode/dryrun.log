@@ -1,12 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/ncukondo/dev/core-curriculum-gdrive'
-make downloads
-rm -rf output
-make csv
-make texts
-make docs
-make other_data
-mkdir -p output_in_github
-cp -r ./output/* output_in_github
+make python_files
+make output
 make: Leaving directory '/home/ncukondo/dev/core-curriculum-gdrive'
  

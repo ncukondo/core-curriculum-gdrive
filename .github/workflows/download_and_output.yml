@@ -20,6 +20,9 @@ jobs:
       GAUTH_TOKEN_URI: ${{secrets.GAUTH_TOKEN_URI}}
       GAUTH_AUTH_PROVIDER_X509_CERT_URL: ${{secrets.GAUTH_AUTH_PROVIDER_X509_CERT_URL}}
       GAUTH_CLIENT_X509_CERT_URL: ${{secrets.GAUTH_CLIENT_X509_CERT_URL}}
+      GDRIVE_OUTCOME: ${{secrets.GDRIVE_OUTCOME}}
+      GDRIVE_GENERAL: ${{secrets.GDRIVE_GENERAL}}
+      GDRIVE_DOCUMENTS: ${{secrets.GDRIVE_DOCUMENTS}}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
