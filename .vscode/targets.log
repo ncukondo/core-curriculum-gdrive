@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Sat Nov  5 11:15:10 2022
+# Make data base, printed on Sat Nov  5 14:36:13 2022
 
 # Variables
 
@@ -54,7 +54,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 PYENV_ROOT = /home/ncukondo/.pyenv
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-b5df628d-e5d4-4db4-97a9-c25eea8ec358.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-4ca3e4bf-ae86-4426-810d-8ff94cf4d1cf.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -74,11 +74,11 @@ PWD = /home/ncukondo/dev/core-curriculum-gdrive
 # environment
 SSH_AGENT_PID = 236
 # environment
-WSL_INTEROP = /run/WSL/14008_interop
+WSL_INTEROP = /run/WSL/21140_interop
 # environment
 PULSE_SERVER = /mnt/wslg/PulseServer
 # environment
-WT_SESSION = 03d31f3f-4e02-4966-afe2-ccb077e2a600
+WT_SESSION = c9307f4f-0157-46d7-9535-1d8ac7ad7f44
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -290,6 +290,7 @@ output:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'Makefile', line 8):
 	make downloads
 	rm -rf output
@@ -307,7 +308,6 @@ other_data:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 22):
 	python ./python/output_other_data.py
- 
 
 # files hash-table stats:
 # Load=13/1024=1%, Rehash=0, Collisions=0/41=0%
@@ -323,6 +323,6 @@ other_data:
 # strcache performance: lookups = 54 / hit rate = 46%
 # hash-table stats:
 # Load=29/8192=0%, Rehash=0, Collisions=1/54=2%
-# Finished Make data base on Sat Nov  5 11:15:10 2022
+# Finished Make data base on Sat Nov  5 14:36:13 2022
 
  
