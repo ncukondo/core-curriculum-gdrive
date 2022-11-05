@@ -1,8 +1,6 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-'\\wsl.localhost\Ubuntu\home\ncukondo\dev\core-curriculum-gdrive'
-CMD.EXE was started with the above path as the current directory.
-UNC paths are not supported.  Defaulting to Windows directory.
-
-'make.exe' is not recognized as an internal or external command,
-operable program or batch file.
-
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ncukondo/dev/core-curriculum-gdrive'
+make python_files
+make output
+make: Leaving directory '/home/ncukondo/dev/core-curriculum-gdrive'
+ 
